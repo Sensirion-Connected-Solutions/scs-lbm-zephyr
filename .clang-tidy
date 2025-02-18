@@ -1,0 +1,5 @@
+---
+Checks: '-*,clang-diagnostic-*,bugprone-*,clang-analyzer-*,performance-*,readability-*,readability-function-cognitive-complexity'
+CheckOptions:
+  - key: readability-function-cognitive-complexity.Threshold
+    value: 150

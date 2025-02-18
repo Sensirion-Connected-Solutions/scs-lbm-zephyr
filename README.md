@@ -14,11 +14,11 @@ another project. In that case you need to add `import: true` to the caller confi
 
 ```yaml
   projects:
-    - name: LBM_Zephyr
-      path: modules/LBM_Zephyr
+    - name: lbm_zephyr
+      path: modules/lbm_zephyr
       remote: lora-net
-      repo-path: LBM_Zephyr
-      revision: main
+      repo-path: scs-lbm-zephyr
+      revision: master
       import: true
 ```
 

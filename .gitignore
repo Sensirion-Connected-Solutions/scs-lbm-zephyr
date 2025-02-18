@@ -1,0 +1,46 @@
+# Editor
+.swp
+cscope.out
+cscope.out.files
+cscope.out.temp
+tags
+tags.lock
+tags.temp
+.vscode
+.idea
+
+# Build
+compile_commands.json
+.cache
+**/build/*
+build/*
+build*
+generated
+twister-out
+cmake-build*
+
+# Python
+__pycache__
+.env
+.venv
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+develop-eggs/
+dist/
+eggs/
+.eggs/
+lib/
+lib64/
+parts/
+sdist/
+var/
+wheels/
+share/python-wheels/
+*.egg-info/
+*.egg
+
+#envrc
+.envrc
