@@ -328,6 +328,14 @@ config LORA_BASICS_MODEM_DISABLE_JOIN_DUTY_CYCLE
 	 between gateway and device) for faster joins.
 	 You should keep this disabled to follow the LoRaWAN standard.
 
+config LORA_BASICS_MODEM_CONTEXT_BUFFER_SIZE
+	int "Context backup/restoration buffer size"
+	default 512
+
+config LORA_BASICS_MODEM_APP_HELPERS
+	bool "Build App helpers from LoRa Basics Modem (mostly for Semtech samples)"
+	select UART_INTERRUPT_DRIVEN
+	default n
 
 config LORA_BASICS_MODEM_MAIN_THREAD
 	bool "Enable a main loop thread that runs the LBM stack automatically."
