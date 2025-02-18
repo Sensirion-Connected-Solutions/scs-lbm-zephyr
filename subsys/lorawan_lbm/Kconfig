@@ -10,13 +10,15 @@ menuconfig LORA_BASICS_MODEM
 	select LORA_BASICS_MODEM_DRIVERS_RAL_RALF
 	select REBOOT
 	# depends on REQUIRES_FULL_LIBC
-	depends on TEST_RANDOM_GENERATOR || ENTROPY_HAS_DRIVER
+	select ENTROPY_GENERATOR
 	select ZEPHYR_LORA_BASICS_MODEM_MODULE
 	depends on !LORAWAN
 	help
 	  This option enables the LoRa Basics Modem stack for LoRaWAN support.
 	  Full libc is required for floorf.
 	  Also make sure some source of randomness is used.
+
+if LORA_BASICS_MODEM
 
 choice
 	prompt "LoRaWAN storage implementation"
@@ -25,21 +27,22 @@ choice
 	  Use a basic flash-based storage implementation or a user-provided implementation
 
 config LORA_BASICS_MODEM_PROVIDED_STORAGE_IMPL
-	bool "Build LoRa Basics Modem basic storage implementation"
-	select FLASH
+	bool "Use a flash-based LoRa Basics Modem storage implementation"
+	depends on FLASH
 	select FLASH_MAP
 	select FLASH_PAGE_LAYOUT
+	help
+	  This storage implementation uses the standard storage-partition to store
+	  the LBM context and logs.
 
 config LORA_BASICS_MODEM_USER_STORAGE_IMPL
-	bool "Enable LoRa Basics Modem user storage implementation"
+	bool "Use an application-provided LoRa Basics Modem storage implementation"
 	help
 	  Enable if user storage implementation is required.
 	  This disables the default storage implementation in the HAL
 	  that uses the settings subsystem.
 
 endchoice
-
-if LORA_BASICS_MODEM
 
 module = LORA_BASICS_MODEM
 module-str = LoRa Basics Modem
@@ -324,17 +327,6 @@ config LORA_BASICS_MODEM_DISABLE_JOIN_DUTY_CYCLE
 	 Enable this if you are testing in an isolated setup (e.g with coaxial cables
 	 between gateway and device) for faster joins.
 	 You should keep this disabled to follow the LoRaWAN standard.
-
-
-# FIXME: is it useful?
-config LORA_BASICS_MODEM_CONTEXT_BUFFER_SIZE
-	int "Context backup/restoration buffer size"
-	default 512
-
-config LORA_BASICS_MODEM_APP_HELPERS
-	bool "Build App helpers from LoRa Basics Modem (mostly for Semtech samples)"
-	select UART_INTERRUPT_DRIVEN
-	default n
 
 
 config LORA_BASICS_MODEM_MAIN_THREAD
