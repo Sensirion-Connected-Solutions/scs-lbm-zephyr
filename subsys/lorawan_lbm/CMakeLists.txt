@@ -2,14 +2,16 @@
 # SPDX-License-Identifier: Apache-2.0
 
 
-if(CONFIG_LORA_BASICS_MODEM)
+if (CONFIG_LORA_BASICS_MODEM)
 
-zephyr_library()
+    zephyr_library()
 
-if(CONFIG_LORA_BASICS_MODEM_MAIN_THREAD)
-  zephyr_library_sources(
-    ${CMAKE_CURRENT_LIST_DIR}/lbm_main_thread.c
-  )
-endif()
+    if (CONFIG_LORA_BASICS_MODEM_MAIN_THREAD)
+        zephyr_library_sources(
+                ${CMAKE_CURRENT_LIST_DIR}/lbm_main_thread.c
+        )
+    endif ()
 
-endif()
+endif ()
+
+zephyr_library_property(ALLOW_EMPTY TRUE)
