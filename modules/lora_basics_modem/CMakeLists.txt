@@ -57,3 +57,5 @@ if(CONFIG_ZEPHYR_LORA_BASICS_MODEM_MODULE)
   endif()
 
 endif()
+
+zephyr_library_property(ALLOW_EMPTY TRUE)
